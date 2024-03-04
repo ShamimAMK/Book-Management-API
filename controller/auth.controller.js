@@ -20,10 +20,11 @@ const createUser = async (req, res) => {
 			throw new Error(
 				"Password must contain at least 8+ chars, Uppercase, Lowercase, number and symbol"
 			);
-		// Check if the user exists or not
-		const isExists = await userModel.findOne({ email });
 
-		if (isExists) throw new Error("Email already in use");
+		// Check if the user exists or not
+		const isExist = await userModel.findOne({ email });
+
+		if (isExist) throw new Error("Email already in use");
 
 		//password encryption
 		const salt = await bcrypt.genSalt(10);
