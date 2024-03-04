@@ -1,6 +1,7 @@
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/user.model");
+const bookModel = require("../models/book.model");
 
 const createUser = async (req, res) => {
 	try {
