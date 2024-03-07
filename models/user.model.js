@@ -7,6 +7,13 @@ const userSchema = new mongoose.Schema(
 		password: { type: String, required: true },
 		phone: { type: String },
 		address: { type: String },
+		role: {
+			type: String,
+			enum: ["user", "admin"],
+			default: "user",
+			require: true,
+		},
+
 		books: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
