@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/user.model");
