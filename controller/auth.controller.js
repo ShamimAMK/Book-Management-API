@@ -1,4 +1,3 @@
-const { default: mongoose } = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/user.model");
@@ -8,10 +7,9 @@ const createUser = async (req, res) => {
 	try {
 		const { name, email, password, phone, address } = req.body;
 
-		//checking required field
-		if (!email || !name || !password) {
+		//checking required fields
+		if (!email || !name || !password)
 			throw new Error(" Name, Email, Password is required");
-		}
 
 		//validate email
 		if (!validator.isEmail(email)) throw new Error("Invalid email");
@@ -43,7 +41,7 @@ const createUser = async (req, res) => {
 		//create a Token
 		const token = createToken(user._id);
 
-		res.status(201).json(user, token);
+		res.status(201).json({ user, token });
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}
@@ -68,7 +66,7 @@ const loginUser = async (req, res) => {
 		//create a Token
 		const token = createToken(user._id);
 
-		res.status(201).json(user, token);
+		res.status(201).json({ user, token });
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}

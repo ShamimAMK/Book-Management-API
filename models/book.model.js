@@ -7,14 +7,12 @@ const bookSchema = new mongoose.Schema(
 		genre: { type: String, required: true },
 		author: { type: String, required: true },
 		description: { type: String },
-		user: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: "User",
-			},
-		],
+		user: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+		},
 	},
 	{ timestamps: true }
 );
 
-module.export = mongoose.model("Book", bookSchema);
+module.exports = mongoose.model("Book", bookSchema);

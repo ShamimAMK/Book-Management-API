@@ -14,7 +14,7 @@ const getAnUser = async (req, res) => {
 	try {
 		const { userId } = req.params;
 
-		if (!mongoose.Types.ObjectId(userId)) {
+		if (!mongoose.Types.ObjectId.isValid(userId)) {
 			throw new error("Invalid User ID");
 		}
 		const user = await userModel.findById(userId);

@@ -27,7 +27,7 @@ const createBook = async (req, res) => {
 
 const getAllBooks = async (req, res) => {
 	try {
-		const books = await bookModel.find({}).populate(user).exec();
+		const books = await bookModel.find({}).populate("user").exec();
 		res.status(200).json(books);
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -37,11 +37,12 @@ const getAllBooks = async (req, res) => {
 const getABook = async (req, res) => {
 	try {
 		const { bookId } = req.params;
+
 		if (!mongoose.Types.ObjectId.isValid(bookId)) {
 			throw new Error("Invalid book id");
 		}
 
-		const book = await bookModel.findById(bookId).populate(user).exec();
+		const book = await bookModel.findById(bookId).populate("user").exec();
 
 		if (!book) {
 			throw new Error("Book not found");

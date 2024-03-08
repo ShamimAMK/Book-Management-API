@@ -3,6 +3,7 @@ const userModel = require("../models/user.model");
 
 const isAuthenticated = async (req, res, next) => {
 	try {
+		//req.headers.authorization = `Bearer token`
 		const authHeader = req.headers.authorization;
 
 		if (!authHeader || !authHeader.startsWith("Bearer")) {
@@ -29,4 +30,4 @@ const isAuthenticated = async (req, res, next) => {
 	}
 };
 
-Module.exports = isAuthenticated;
+module.exports = isAuthenticated;
