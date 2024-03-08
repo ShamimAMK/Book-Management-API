@@ -7,37 +7,36 @@ const authRouter = require("./routes/auth.route");
 const userRouter = require("./routes/user.route");
 const bookRouter = require("./routes/book.route");
 
-//express app
+// express app
 const app = express();
 
-//middlewares
+// middlewares
 app.use(express.json());
 app.use(cors({ credentials: true }));
 
-//test api
+// test api
 app.get("/", (req, res) => {
 	res.status(200).json({
-		message: "Welcome to our Server!",
+		message: "Welcome to our server!",
 	});
 });
 
-//routes
+// routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/books", bookRouter);
 
-//port
+// port
 const port = process.env.PORT || 8080;
 
-//uri
+// uri
 const uri = process.env.MONGODB_URI;
 
-//db connection
+// db connection
 mongoose
 	.connect(uri)
 	.then(() => {
-		
-		//listen
+		// listen
 		app.listen(port, () => {
 			console.log(`Server running on port: ${port}`);
 		});
